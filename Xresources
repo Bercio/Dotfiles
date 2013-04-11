@@ -81,3 +81,6 @@ URxvt*color14:               S_base1
 !! white dark/light
 URxvt*color7:                S_base2
 URxvt*color15:               S_base3
+URxvt.colorIT:               #87af5f
+URxvt.colorBD:               #d7d7d7
+URxvt.colorUL:               #87afd7

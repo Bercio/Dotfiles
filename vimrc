@@ -1,61 +1,56 @@
-set nocompatible                                               " use pure vim settings, uncompatible with vi, must be set at the start of .vimrc 
-filetype off                                                   "required for vundle!
+filetype off                                                   
+"required for vundle!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-                                       " let Vundle manage Vundle
-                                       " required!
+" let Vundle manage Vundle
+" vim +BundleInstall +qall|vim; :BundleInstall installs all,
+" vim +BundleInstall! +qall | vim; :BundleInstall!  updates all
  Bundle 'gmarik/vundle'
  
-                                       " My Bundles here:
-                                       " ?
- Bundle 'pep8'
-                                       " git wrapper
-" Bundle 'tpope/vim-fugitive'
-                                       " omnicomplete with tab
+" here be TIMPOPE !!!!!!!!!!!!!!!!!!!!!!!!
+" Defaults everyone can agree on
+ Bundle 'tpope/vim-sensible'
+" the dot repeats commands from plugins too
+ Bundle 'tpope/vim-repeat'
+" Use <gcc> to comment out a line, <gc> to comment out the target of a motion (for example, <gcap> to comment out a paragraph), and <gc> in visual mode to comment out a region. The above maps actually toggle, and <gcu> uncomments a set of adjacent commented lines. 
+ Bundle 'tpope/vim-commentary'
+" omnicomplete with tab and a ton of option, look them up
  Bundle 'ervandew/supertab'
-                                       " easy acces to python documentation
- Bundle 'fs111/pydoc.vim'
-             
-                                       " colorscheme
- Bundle 'altercation/vim-colors-solarized'
-filetype plugin indent on             " file type detection and language depending indenting
-syntax on                                                      " set syntax highlighting on
+" lets you define constructs, snippets, to use in autocompletion. 
+ Bundle 'msanders/snipmate.vim'
+" improved syntax higlighting for python
+ Bundle 'python.vim'
+" corrects syntax errors, styilistc incoherency to PEP8, and excessive complexity. Call with <F7>
+ Bundle 'nvie/vim-flake8'
+" <leader><leader><jump-term(f,t,w,b,e and n,N after a search)> labels with letters possible choices and you select one.
+ Bundle 'Lokaltog/vim-easymotion'
+"colortheme
+ Bundle 'chriskempson/base16-vim'
+filetype plugin indent on             
+syntax on 
 
 set textwidth=79
 set background=dark
-colorscheme solarized
-call togglebg#map("<F5>")
+colorscheme base16-default
 
-set nobackup
 set shiftwidth=4                                               "This allows you to use the < and > keys from VIM's visual (marking) mode to block indent/unindent regions
 set softtabstop=4                                              "makes VIM see multiple space characters as tabstops, and so <BS> does the right thing and will delete four spaces
 set tabstop=4                                                  "tabs are counted as 4 spaces
 set expandtab                                                  "tabs are converted to spaces
-set number                                                     " show line numbers
-set autoindent                                                 " the indent of the new line will match that of the previous line.
+set relativenumber                                                     " show line numbers
 set foldmethod=indent                                          "folds indented text
 set foldlevel=99
-set history=50                                                 " keep 50 lines of command line history
-set showcmd                                                    " display incomplete commands
-set incsearch                                                  " do incremental searchin
 set ignorecase
 set smartcase                                                  "ignore case in search if all lowercase
 set formatoptions=c,q                                          "Auto-wrap comments using textwidth, insertingthe current comment leader                                                                           automatically. q allows formatting comments with gq
 set encoding=utf-8                                             "encode everything in utf-8
-set wildmenu                                                   "show autocomplete menus
 set grepprg=grep\ -nH\ $*                                      " Set grep to always display the filename.
 set mouse=a
 set pastetoggle=<F3>                                           "press F3 to avoid strange pasting behavior.
-
-autocmd FileType tex setlocal spell spelllang=en_us            "set english spelling for tex files
+set whichwrap+=<,>,h,l
+autocmd FileType markdown setlocal spell spelllang=en_us            "set english spelling for markdown files
 autocmd FileType plaintext setlocal spell spelllang=en_us      "set spelling for plaintext files, as defined by the the user-created                                                                              vim file /usr/share/vim/vimfiles/ftdetect/plaintext.vim
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType python set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class "indent after those wordso
-
-let g:SuperTabDefaultCompletionType = "context"                "python context-dependent autocompletion with SuperTab
-let g:pep8_map                      = '<leader>8'                                     "browse Pep8 corrections with ,8
-let g:tex_flavor                    = "latex"
 "forces to be a pro
 nnoremap <up> <nop>
 nnoremap <down> <nop>
@@ -69,8 +64,5 @@ inoremap <right> <nop>
 nnoremap j gj
 nnoremap k gk
  "w!! in command mode saves changes made to protected files opened without sudo
-cmap w!! w !sudo tee % >/dev/null                             
-"use normal regex in normal and visual mode
-"nnoremap / /\v not working well    
-"vnoremap / /\v not working well    
+command W silent execute 'write !sudo tee ' . shellescape(@%, 1) . ' >/dev/null'
 let mapleader = ","

@@ -1,1 +1,1 @@
-/home/bercio//home/bercio/.dotfiles/rc.lua
+/home/bercio/.config/awesome/rc.lua

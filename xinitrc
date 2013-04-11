@@ -28,4 +28,5 @@ exec awesome & wmpid=$!
 redshift -l 25.0333:121.5333 &
 batNotifier.py &
 xbindkeys &
+unclutter &
 wait $wmpid
