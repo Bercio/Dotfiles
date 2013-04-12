@@ -26,10 +26,11 @@ call vundle#rc()
  Bundle 'python.vim'
 " corrects syntax errors, styilistc incoherency to PEP8, and excessive
  "complexity. Call with <F7> Bundle 'nvie/vim-flake8'
+ Bundle 'nvie/vim-flake8'
 " <leader><leader><jump-term(f,t,w,b,e and n,N after a search)> labels with
-"letters possible choices and you select one.  Bundle 'Lokaltog/vim-easymotion'
+"letters possible choices and you select one.
+ Bundle 'Lokaltog/vim-easymotion'
 "colortheme
- Bundle 'chriskempson/base16-vim'
  "loads sensinble.vim earlier, so i can override it (currently overriding:
  "<C-U> <G-U>u<C-U> with <CTR>  <G-U>u<C-U>
 filetype plugin on
@@ -58,9 +59,6 @@ set foldlevel=99
 set ignorecase
 "ignore case in search if all lowercase
 set smartcase
-"encode everything in utf-8
-set encoding=utf-8
-set hlsearch
 set mouse=a
 "press F3 to avoid strange pasting behavior.
 set pastetoggle=<F3>
@@ -74,16 +72,13 @@ set gdefault
 set autowrite
 "undo file stay in their goddamn place
 set undodir^=~/.vim/undo
-"dash and underdash are valid word dividers
-set iskeyword+=-
-set iskeyword+=_
 autocmd FileType markdown setlocal spell spelllang=en_us            "set english spelling for markdown files
 autocmd FileType text setlocal spell spelllang=en_us      "set spelling for plaintext files, as defined by the the user-created                                                                              vim file /usr/share/vim/vimfiles/ftdetect/plaintext.vim
 "launch Pyflake8 on the current file every time I save it
-autocmd FileType python *BufWritePost call Flake8()
+autocmd BufWritePost *.py call Flake8()
 "launch
 "Sets the vim default register to be the same as that of Xorg
-let g:clipbrdDefaultReg = '+'
+let g:clipbrdDefaultReg = '*'
 "now easy motion only needs <leader>f<word>
 let g:EasyMotion_leader_key = '<Leader>'
 

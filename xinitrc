@@ -10,15 +10,7 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
   done
   unset f
 fi
-# change keymap to costum ~/.xmodmaprc
-if [ -f $HOME/.dotfiles/xmodmaprc ]; then
-    /usr/bin/xmodmap $HOME/.dotfiles/xmodmaprc
-fi
-# add keybinings
 
-if [ -f $HOME/.dotfiles/xbindkeysrc ]; then
-    /usr/bin/xbindkeys --file $HOME/.dotfiles/xbindkeysrc
-fi
 
 #read .Xresources
 #[[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
@@ -31,6 +23,14 @@ exec awesome & wmpid=$!
 # ...or the Window Manager of your choice
 
 #start programs when X is launched
+# change keymap to costum ~/.xmodmaprc
+if [ -f $HOME/.dotfiles/xmodmaprc ]; then
+    /usr/bin/xmodmap $HOME/.dotfiles/xmodmaprc &
+fi
+# add keybinings
+if [ -f $HOME/.dotfiles/xbindkeysrc ]; then
+    /usr/bin/xbindkeys --file $HOME/.dotfiles/xbindkeysrc
+fi
 redshift -l 25.0333:121.5333 &
 unclutter &
 wait $wmpid
