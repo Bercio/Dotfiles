@@ -7,7 +7,7 @@
 ########## Variables
 
 dir=~/.dotfiles # dotfiles directory
-files="vimrc vim zshrc xinitrc mutt rc.lua xbindkeys xinitrc Xresources"    # list of files/folders to symlink in homedir
+files="vimrc xinitrc mutt rc.lua xbindkeysrc zshrc xinitrc Xresources"    # list of files/folders to symlink in homedir
 
 ##########
 

@@ -10,12 +10,18 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
   done
   unset f
 fi
-# change keymap to costum ~/.Xmodmap
-#if [ -f $HOME/.Xmodmap ]; then
-#    /usr/bin/xmodmap $HOME/.Xmodmap
-#fi
+# change keymap to costum ~/.xmodmaprc
+if [ -f $HOME/.dotfiles/xmodmaprc ]; then
+    /usr/bin/xmodmap $HOME/.dotfiles/xmodmaprc
+fi
+# add keybinings
+
+if [ -f $HOME/.dotfiles/xbindkeysrc ]; then
+    /usr/bin/xbindkeys --file $HOME/.dotfiles/xbindkeysrc
+fi
+
 #read .Xresources
-[[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
+#[[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 #xmonad & wmpid=$!
 exec awesome & wmpid=$!
 # exec gnome-session & wmpid=$!
@@ -26,7 +32,5 @@ exec awesome & wmpid=$!
 
 #start programs when X is launched
 redshift -l 25.0333:121.5333 &
-batNotifier.py &
-xbindkeys &
 unclutter &
 wait $wmpid
