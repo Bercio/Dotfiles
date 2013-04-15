@@ -24,13 +24,15 @@ exec awesome & wmpid=$!
 
 #start programs when X is launched
 # change keymap to costum ~/.xmodmaprc
-if [ -f $HOME/.dotfiles/xmodmaprc ]; then
-    /usr/bin/xmodmap $HOME/.dotfiles/xmodmaprc &
-fi
+# if [ -f $HOME/.dotfiles/xmodmaprc ]; then
+#     /usr/bin/xmodmap $HOME/.dotfiles/xmodmaprc &
+# fi
 # add keybinings
 if [ -f $HOME/.dotfiles/xbindkeysrc ]; then
     /usr/bin/xbindkeys --file $HOME/.dotfiles/xbindkeysrc
 fi
+xmodmap /home/bercio/.dotfiles/xmodmaprc &
 redshift -l 25.0333:121.5333 &
 unclutter &
+sudo logkeys --start --output=/home/bercio/log --keymap=/home/bercio/keymap &
 wait $wmpid
