@@ -7,7 +7,6 @@ call vundle#rc()
 " vim +BundleInstall +qall|vim; :BundleInstall installs all,
 " vim +BundleInstall! +qall | vim; :BundleInstall!  updates all
  Bundle 'gmarik/vundle'
- Bundle 'remind.vim'
 " here be TIMPOPE !!!!!!!!!!!!!!!!!!!!!!!!
 " Defaults everyone can agree on
  Bundle 'tpope/vim-sensible'
@@ -32,14 +31,15 @@ call vundle#rc()
  Bundle 'Lokaltog/vim-easymotion'
  "loads sensinble.vim earlier, so i can override it (currently overriding:
  "<C-U> <G-U>u<C-U> with <CTR>  <G-U>u<C-U>
+ Bundle 'chriskempson/base16-vim'
 filetype plugin on
 syntax on
 runtime! plugin/sensible.vim
 set textwidth=79
 set colorcolumn=80
 set background=dark
-" wait to configure shell for this: colorscheme base16-default
-colorscheme desert
+let base16colorspace=256
+colorscheme base16-default
 set shiftwidth=4
 set softtabstop=4
 set guioptions-=mT

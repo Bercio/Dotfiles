@@ -1,22 +1,20 @@
-!removes capslock, adds shift to capslock key, adds control to shift. wouldn't
-!work with only keysym
-keycode 66 = Shift_L
 clear Lock
-add Shift = Shift_L
-keycode 50 = Control_L
-remove Shift = Control_L
+clear Control
+clear Mod4
+clear Mod1
+remove Lock = Caps_Lock
+remove Control = Control_L
+! not sure why, maybe just to keep the name of the key consistent with the function
+keysym Control_L = Caps_Lock
+keysym Caps_Lock = Control_L
+add Lock = Caps_Lock
 add Control = Control_L
+keysym semicolon = colon semicolon
 !Awesome WM wants widnwoskey as modifier, alt, is easier to reach, swap
 remove Mod4 = Super_L
 remove Mod1 = Alt_L
 !That wierd menu key on the right, opens a weirf version of th contextenu
 keycode 135 = Super_L
-add Mod4 = Alt_L
-add Mod1 = Super_L
-remove Mod1 = Alt_R
-add Mod4 = Alt_R
-keysym semicolon = colon semicolon
-!control_L is now escape
-keycode 37 = Escape
-remove Control = Escape
-
+keysym Alt_L = Super_L
+keysym Super_L = Alt_L
+add Mod4 = Super_L

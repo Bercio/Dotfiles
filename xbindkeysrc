@@ -6,3 +6,9 @@
     Mod2 + XF86AudioLowerVolume
 "amixer sset Master playback 5+"
     Mod2 + XF86AudioRaiseVolume
+"mpc toggle"
+    Mod2 + XF86AudioPlay
+"mpc next"
+    Mod2 + XF86AudioNext
+"mpc cdprev"
+    Mod2 + XF86AudioPrev

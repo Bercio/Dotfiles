@@ -1,9 +1,5 @@
 #!/bin/sh
 #
-# ~/.xinitrc
-#
-# Executed by startx (run your window manager from here)
-
 if [ -d /etc/X11/xinit/xinitrc.d ]; then
   for f in /etc/X11/xinit/xinitrc.d/*; do
     [ -x "$f" ] && . "$f"
@@ -11,28 +7,17 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
   unset f
 fi
 
-
-#read .Xresources
-#[[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
-#xmonad & wmpid=$!
+[[ -f ~/.dotfiles/Xresources ]] && xrdb -merge ~/.dotfiles/Xresources
+[[ -r ~/.config/colors/default.xresources ]] && xrdb -merge ~/.config/colors/default.xresources
 exec awesome & wmpid=$!
-# exec gnome-session & wmpid=$!
-# exec startkde & wmpid=$!
-#exec startxfce4 & wmpid=$
-#exec dwm & wmpid=$!
-# ...or the Window Manager of your choice
-
-#start programs when X is launched
-# change keymap to costum ~/.xmodmaprc
-# if [ -f $HOME/.dotfiles/xmodmaprc ]; then
-#     /usr/bin/xmodmap $HOME/.dotfiles/xmodmaprc &
-# fi
-# add keybinings
 if [ -f $HOME/.dotfiles/xbindkeysrc ]; then
-    /usr/bin/xbindkeys --file $HOME/.dotfiles/xbindkeysrc
+    /usr/bin/xbindkeys --file $HOME/.dotfiles/xbindkeysrc &
 fi
-xmodmap /home/bercio/.dotfiles/xmodmaprc &
+urxvtd -q -f &
 redshift -l 25.0333:121.5333 &
+remind -z -k'notify-send "Remind" %s &' /home/bercio/Reminders/all.rem &
 unclutter &
-sudo logkeys --start --output=/home/bercio/log --keymap=/home/bercio/keymap &
+if [ -f $HOME/.dotfiles/xmodmaprc ]; then
+    /usr/bin/xmodmap $HOME/.dotfiles/xmodmaprc
+fi
 wait $wmpid
