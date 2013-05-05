@@ -17,7 +17,9 @@ urxvtd -q -f &
 redshift -l 25.0333:121.5333 &
 remind -z -k'notify-send "Remind" %s &' /home/bercio/Reminders/all.rem &
 unclutter &
+numlockx &
+synclient TouchpadOff=1 &
 if [ -f $HOME/.dotfiles/xmodmaprc ]; then
-    /usr/bin/xmodmap $HOME/.dotfiles/xmodmaprc
+    /usr/bin/xmodmap $HOME/.dotfiles/xmodmaprc &
 fi
 wait $wmpid

@@ -1,4 +1,4 @@
-"toggleTouchpad.sh"
+"/home/bercio/Projects/Scripts/toggleTouchpad.sh"
     Mod2 + XF86TouchpadToggle
 "amixer sset Master toggle"
     Mod2 + XF86AudioMute
@@ -12,3 +12,5 @@
     Mod2 + XF86AudioNext
 "mpc cdprev"
     Mod2 + XF86AudioPrev
+"mpc stop"
+    Mod2 + XF86AudioStop

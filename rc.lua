@@ -1,1 +1,0 @@
-/home/bercio/.config/awesome/rc.lua
