@@ -29,6 +29,7 @@ call vundle#rc()
 " <leader><leader><jump-term(f,t,w,b,e and n,N after a search)> labels with
 "letters possible choices and you select one.
  Bundle 'Lokaltog/vim-easymotion'
+ Bundle 'skammer/vim-css-color'
  "loads sensinble.vim earlier, so i can override it (currently overriding:
  "<C-U> <G-U>u<C-U> with <CTR>  <G-U>u<C-U>
  Bundle 'chriskempson/base16-vim'
@@ -99,3 +100,4 @@ au FocusLost * :wa
 "saves folds
 autocmd BufWrite * mkview
 autocmd BufRead * silent loadview
+inoremap <esc> <right><esc>

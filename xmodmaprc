@@ -14,7 +14,11 @@ keysym semicolon = colon semicolon
 remove Mod4 = Super_L
 remove Mod1 = Alt_L
 !That wierd menu key on the right, opens a weirf version of th contextenu
-keycode 135 = Super_L
 keysym Alt_L = Super_L
 keysym Super_L = Alt_L
 add Mod4 = Super_L
+add Mod1 = Alt_L
+remove Mod1 = Alt_R
+keysym Menu = Super_R
+add Mod1 = Super_R
+add Mod4 = Alt_R
