@@ -8,6 +8,7 @@ call vundle#rc()
 " vim +BundleInstall! +qall | vim; :BundleInstall!  updates all
 Bundle 'gmarik/vundle'
 Bundle 'sjl/gundo.vim'
+Bundle 'mhinz/vim-startify'
 Bundle 'vim-indent-object'
 Bundle 'Valloric/YouCompleteMe'
 " here be TIMPOPE !!!!!!!!!!!!!!!!!!!!!!!!
@@ -37,13 +38,14 @@ Bundle 'chriskempson/base16-vim'
 filetype plugin on
 syntax on
 runtime! plugin/sensible.vim
+set hidden
 set colorcolumn=80
+set cursorline
 set background=dark
 let base16colorspace=256
 colorscheme base16-default
 set shiftwidth=4
 set softtabstop=4
-set guioptions-=mT
 set laststatus=0
 set lazyredraw
 set tabstop=4
@@ -53,7 +55,6 @@ set relativenumber
 set foldlevel=99
 set ignorecase
 set smartcase
-set mouse=a
 set pastetoggle=<F3>
 set whichwrap+=<,>,h,l
 set modeline
@@ -62,8 +63,7 @@ set autowrite
 set undodir^=~/.vim/undo
 set shell=/bin/zsh
 set clipboard=unnamed
-let g:clipbrdDefaultReg = '*'
-let g:EasyMotion_leader_key = 'j:'
+let g:EasyMotion_leader_key = '<leader>'
 let g:EasyMotion_keys = '1234567890'
 let g:EasyMotion_mapping_f = 'f'
 let g:EasyMotion_mapping_F = 'F'
@@ -102,10 +102,11 @@ nnoremap <C-K> :bn<CR>
 nnoremap j gj
 nnoremap k gk
 inoremap jj <right><Esc>
+nnoremap <C-x> lxh
 nnoremap <leader>: w<CR>:
 nnoremap <silent> zj o<Esc>
 nnoremap <silent> zk O<Esc>
-nnoremap <leader>k :split +YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <leader>K +YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap / /\v
 vnoremap / /\v
 "Reselct visual block after indent/outdent
@@ -121,3 +122,5 @@ autocmd BufNewFile, BufRead *.txt setlocal spell spelllang=en
 "saves folds
 autocmd BufWrite * mkview
 autocmd BufRead * silent loadview
+iabbrev lber Lorenzo Bercelli
+iabbrev gml lorenzo233@gmail.com
