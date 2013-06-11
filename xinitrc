@@ -14,12 +14,14 @@ if [ -f $HOME/.dotfiles/xbindkeysrc ]; then
     /usr/bin/xbindkeys --file $HOME/.dotfiles/xbindkeysrc &
 fi
 urxvtd -q -f &
-redshift -l 25.0333:121.5333 &
+# redshift -l 25.0333:121.5333 &
 remind -z -k'notify-send "Remind" %s &' /home/bercio/Reminders/all.rem &
-unclutter &
+unclutter -grab &
 numlockx &
 synclient TouchpadOff=1 &
 if [ -f $HOME/.dotfiles/xmodmaprc ]; then
     /usr/bin/xmodmap $HOME/.dotfiles/xmodmaprc &
 fi
+wicd-gtk -t &
+chromium &
 wait $wmpid

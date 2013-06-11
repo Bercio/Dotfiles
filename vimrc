@@ -6,14 +6,15 @@ call vundle#rc()
 " let Vundle manage Vundle
 " vim +BundleInstall +qall|vim; :BundleInstall installs all,
 " vim +BundleInstall! +qall | vim; :BundleInstall!  updates all
+Bundle 'ivanov/vim-ipython'
 Bundle 'gmarik/vundle'
 Bundle 'sjl/gundo.vim'
 Bundle 'mhinz/vim-startify'
 Bundle 'vim-indent-object'
 Bundle 'Valloric/YouCompleteMe'
+Bundle 'fs111/pydoc.vim'
 " here be TIMPOPE !!!!!!!!!!!!!!!!!!!!!!!!
-" Defaults everyone can agree on
-Bundle 'tpope/vim-sensible'
+Bundle 'tpope/vim-markdown'
 " the dot repeats commands from plugins too
 Bundle 'tpope/vim-repeat'
 " Use <gcc> to comment out a line, <gc> to comment out the target of a motion
@@ -36,37 +37,92 @@ Bundle 'skammer/vim-css-color'
 "<C-U> <G-U>u<C-U> with <CTR>  <G-U>u<C-U>
 Bundle 'chriskempson/base16-vim'
 filetype plugin on
+"Change default behavior
 syntax on
 runtime! plugin/sensible.vim
-set hidden
-set colorcolumn=80
-set cursorline
 set background=dark
 let base16colorspace=256
 colorscheme base16-default
 set shiftwidth=4
 set softtabstop=4
+set whichwrap+=<,>,h,l
+set scrolloff=10
+set colorcolumn=80
+set cursorline
+set foldlevel=99
 set laststatus=0
+set modeline
 set lazyredraw
 set tabstop=4
 set expandtab
 set smarttab
-set relativenumber
-set foldlevel=99
 set ignorecase
 set smartcase
 set pastetoggle=<F3>
-set whichwrap+=<,>,h,l
-set modeline
+set clipboard=unnamed
 set gdefault
+set matchpairs+=<:>
+set shell=/bin/zsh
+set makeprg="./%"
+set hidden
+set autowriteall
 set autowrite
 set undodir^=~/.vim/undo
-set shell=/bin/zsh
-set clipboard=unnamed
-let g:EasyMotion_leader_key = '<leader>'
-let g:EasyMotion_keys = '1234567890'
-let g:EasyMotion_mapping_f = 'f'
-let g:EasyMotion_mapping_F = 'F'
+autocmd FocusLost * writeall
+"saves folds
+autocmd BufWrite * mkview
+autocmd BufRead * silent loadview
+iabbrev lber Lorenzo Bercelli
+iabbrev gml lorenzo233@gmail.com
+"Filetype dependant
+autocmd FileType python set foldmethod=indent
+autocmd FileType python set makeprg="python %"
+autocmd FileType sh set makeprg="sh %"
+"Change default keybindings
+"forces to be a pro
+"move up and down one screen line, not one text line.
+nnoremap j gj
+nnoremap k gk
+"space let's you enter a single char and go back to normal mode
+nnoremap <Space> i_<Esc>r
+inoremap jj <right><Esc>
+nnoremap <C-x> lxh
+nnoremap <leader>: w<CR>:
+nnoremap <silent> zj o<Esc>
+nnoremap <silent> zk O<Esc>
+nnoremap <c-s> i<CR><Esc>
+nnoremap ! 1
+nnoremap @ 2
+nnoremap # 3
+nnoremap $ 4
+nnoremap % 5
+nnoremap ^ 6
+nnoremap & 7
+nnoremap * 8
+nnoremap ( 9
+nnoremap ) 0
+nnoremap 1 !
+nnoremap 2 @
+nnoremap 3 #
+nnoremap 4 $
+nnoremap 5 %
+nnoremap 6 ^
+nnoremap 7 &
+nnoremap 8 *
+nnoremap 9 (
+nnoremap 0 )
+nnoremap zh zt
+nnoremap zl zb
+nnoremap zm zz
+nnoremap / /\v
+vnoremap / /\v
+"Reselct visual block after indent/outdent
+vnoremap < <gv
+vnoremap > >gv
+"selects the test you just pasted in visual mode
+nnoremap <leader>v V`]
+let mapleader = ","
+"Snippets config
 "let ycm and ultisnips coexist peacefully
 function! g:UltiSnips_Complete()
     call UltiSnips_ExpandSnippet()
@@ -83,44 +139,25 @@ function! g:UltiSnips_Complete()
     return ""
 endfunction
 au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
+
 hi link EasyMotionTarget ErrorMsg
 hi link EasyMotionShade  Comment
-let mapleader = ","
-"forces to be a pro
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
-nnoremap <C-J> :bp<CR>
-nnoremap <C-K> :bn<CR>
-"move up and down one screen line, not one text line.
-nnoremap j gj
-nnoremap k gk
-inoremap jj <right><Esc>
-nnoremap <C-x> lxh
-nnoremap <leader>: w<CR>:
-nnoremap <silent> zj o<Esc>
-nnoremap <silent> zk O<Esc>
-nnoremap <leader>K +YcmCompleter GoToDefinitionElseDeclaration<CR>
-nnoremap / /\v
-vnoremap / /\v
-"Reselct visual block after indent/outdent
-vnoremap < <gv
-vnoremap > >gv
-"selects the test you just pasted in visual mode
-nnoremap <leader>v V`]
+"New commands
  "w!! in command mode saves changes made to protected files opened without sudo
 command W silent execute 'write !sudo tee ' . shellescape(@%, 1) . ' >/dev/null'
 " Remove any trailing whitespace that is in the file
 autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
-autocmd BufNewFile, BufRead *.txt setlocal spell spelllang=en
-"saves folds
-autocmd BufWrite * mkview
-autocmd BufRead * silent loadview
-iabbrev lber Lorenzo Bercelli
-iabbrev gml lorenzo233@gmail.com
+
+function! AutoChmod()
+    if getline(1) =~ "^#!.*/bin/"
+        silent !chmod a+x <afile>
+    endif
+endfunction
+autocmd BufWritePost * call AutoChmod()
+
+command Ita setlocal spelllang=it keymap=italianaccents
+"plugins keybindings
+let g:EasyMotion_leader_key = '<leader>'
+nnoremap <leader>K +YcmCompleter GoToDefinitionElseDeclaration<CR>
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsExpandTrigger="<c-k>"
