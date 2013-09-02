@@ -36,44 +36,10 @@ Bundle 'skammer/vim-css-color'
 "loads sensinble.vim earlier, so i can override it (currently overriding:
 "<C-U> <G-U>u<C-U> with <CTR>  <G-U>u<C-U>
 Bundle 'chriskempson/base16-vim'
-filetype plugin on
+
 "Change default behavior
+filetype plugin indent on
 syntax on
-runtime! plugin/sensible.vim
-set background=dark
-let base16colorspace=256
-colorscheme base16-default
-set shiftwidth=4
-set softtabstop=4
-set whichwrap+=<,>,h,l
-set scrolloff=10
-set colorcolumn=80
-set cursorline
-set foldlevel=99
-set laststatus=0
-set modeline
-set lazyredraw
-set tabstop=4
-set expandtab
-set smarttab
-set ignorecase
-set smartcase
-set pastetoggle=<F3>
-set clipboard=unnamed
-set gdefault
-set matchpairs+=<:>
-set shell=/bin/zsh
-set makeprg="./%"
-set hidden
-set autowriteall
-set autowrite
-set undodir^=~/.vim/undo
-autocmd FocusLost * writeall
-"saves folds
-autocmd BufWrite * mkview
-autocmd BufRead * silent loadview
-iabbrev lber Lorenzo Bercelli
-iabbrev gml lorenzo233@gmail.com
 "Filetype dependant
 autocmd FileType python set foldmethod=indent
 autocmd FileType python set makeprg="python %"
@@ -85,32 +51,14 @@ nnoremap j gj
 nnoremap k gk
 "space let's you enter a single char and go back to normal mode
 nnoremap <Space> i_<Esc>r
-inoremap jj <right><Esc>
+inoremap jk <right><Esc>
+inoremap kj <right><Esc>
 nnoremap <C-x> lxh
 nnoremap <leader>: w<CR>:
 nnoremap <silent> zj o<Esc>
 nnoremap <silent> zk O<Esc>
 nnoremap <c-s> i<CR><Esc>
-nnoremap ! 1
-nnoremap @ 2
-nnoremap # 3
-nnoremap $ 4
-nnoremap % 5
-nnoremap ^ 6
-nnoremap & 7
-nnoremap * 8
-nnoremap ( 9
-nnoremap ) 0
-nnoremap 1 !
-nnoremap 2 @
-nnoremap 3 #
-nnoremap 4 $
-nnoremap 5 %
-nnoremap 6 ^
-nnoremap 7 &
-nnoremap 8 *
-nnoremap 9 (
-nnoremap 0 )
+nnoremap <c-l> :nohlsearch<CR>
 nnoremap zh zt
 nnoremap zl zb
 nnoremap zm zz
@@ -122,6 +70,7 @@ vnoremap > >gv
 "selects the test you just pasted in visual mode
 nnoremap <leader>v V`]
 let mapleader = ","
+set hlsearch
 "Snippets config
 "let ycm and ultisnips coexist peacefully
 function! g:UltiSnips_Complete()
@@ -142,7 +91,7 @@ au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:U
 
 hi link EasyMotionTarget ErrorMsg
 hi link EasyMotionShade  Comment
-"New commands
+"New commankd
  "w!! in command mode saves changes made to protected files opened without sudo
 command W silent execute 'write !sudo tee ' . shellescape(@%, 1) . ' >/dev/null'
 " Remove any trailing whitespace that is in the file
@@ -161,3 +110,4 @@ let g:EasyMotion_leader_key = '<leader>'
 nnoremap <leader>K +YcmCompleter GoToDefinitionElseDeclaration<CR>
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsExpandTrigger="<c-k>"
+let g:tex_flavor = 'latex'

@@ -1,7 +1,5 @@
 clear Lock
 clear Control
-clear Mod4
-clear Mod1
 remove Lock = Caps_Lock
 remove Control = Control_L
 ! not sure why, maybe just to keep the name of the key consistent with the function
@@ -11,14 +9,7 @@ add Lock = Caps_Lock
 add Control = Control_L
 keysym semicolon = colon semicolon
 !Awesome WM wants widnwoskey as modifier, alt, is easier to reach, swap
-remove Mod4 = Super_L
-remove Mod1 = Alt_L
 !That wierd menu key on the right, opens a weirf version of th contextenu
-keysym Alt_L = Super_L
-keysym Super_L = Alt_L
-add Mod4 = Super_L
-add Mod1 = Alt_L
-remove Mod1 = Alt_R
 keysym Menu = Super_R
-add Mod1 = Super_R
-add Mod4 = Alt_R
+add Mod4 = Super_R
+keysym Print = Insert

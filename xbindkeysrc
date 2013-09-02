@@ -1,4 +1,4 @@
-"/home/bercio/Projects/Scripts/toggleTouchpad.sh"
+"/home/bercio/Scripts/toggleTouchpad.sh"
     Mod2 + XF86TouchpadToggle
 "amixer sset Master toggle"
     Mod2 + XF86AudioMute
