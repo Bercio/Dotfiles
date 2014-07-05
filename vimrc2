@@ -1,11 +1,100 @@
-syntax on
-filetype indent plugin on
-set tabstop=8
-set expandtab
-set shiftwidth=4
-set softtabstop=4
-set background=dark
-set colorcolumn=80
-au BufRead,BufNewFile,FileType text set formatoptions+=a
+"Magic!
+	filetype off
+	set rtp+=~/.vim/bundle/vundle/
+	call vundle#rc()
+	Bundle 'gmarik/vundle'
+	Bundle 'ivanov/vim-ipython'
+	Bundle 'embear/vim-localvimrc'
+	Bundle 'tpope/vim-surround'
+	Bundle 'tpope/vim-repeat'
+	Bundle 'tpope/vim-markdown'
+	Bundle 'chriskempson/base16-vim'
+	Bundle 'dhruvasagar/vim-table-mode'
+	Bundle 'Lokaltog/vim-easymotion'
+	Bundle 'vim-pandoc/vim-pandoc'
+	Bundle 'vim-pandoc/vim-pandoc-syntax'
+        Bundle 'junegunn/goyo.vim'
+
+	let g:EasyMotion_leader_key = '<Leader>'
+	syntax on
+	filetype indent plugin on
+	let g:table_mode_corner_corner = '+'
+        let g:pandoc#modules#disabled = ["folding"]
 
 nnoremap Y y$
+set incsearch
+set ignorecase
+set smartcase
+set tabstop=8
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set autowriteall
+set noswapfile
+set undofile
+set undodir=~/.vim/undo
+set wildmenu
+set path=** 
+set guifont=Inconsolata\ 10
+set guioptions=aegi
+
+if has("gui_running")
+	set background=light
+	colorscheme base16-solarized
+else
+	set background=dark
+	colorscheme base16-twilight
+endif
+
+set scrolloff=20
+"highlight 81 char wide lines
+highlight ColorColumn ctermbg=red
+call matchadd('ColorColumn', '\%80v', 100)
+
+let mapleader = ","
+nnoremap <silent> <C-l> :nohlsearch<CR>
+nnoremap <leader>v :e ~/.vimrc<CR>
+set keymap=accents
+set iminsert=0
+cnoremap acc set iminsert=1<CR>
+nnoremap gb :ls<CR>:b
+nnoremap <leader>g :Goyo<CR>
+cnoremap w! w !sudo tee > /dev/null %
+autocmd! FileType markdown,pandoc TableModeEnable
+let g:localvimrc_ask = 0
+let g:localvimrc_sandbox = 0
+
+function! Goyo_before()
+  let b:quitting = 0
+  let b:quitting_bang = 0
+  autocmd QuitPre <buffer> let b:quitting = 1
+  cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
+endfunction
+
+function! Goyo_after()
+  " Quit Vim if this is the only remaining buffer
+  if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
+    if b:quitting_bang
+      qa!
+    else
+      qa
+    endif
+  endif
+endfunction
+
+function! s:auto_goyo()
+  if &ft == 'markdown'
+    Goyo 80
+  elseif exists('#goyo')
+    let bufnr = bufnr('%')
+    Goyo!
+    execute 'b '.bufnr
+  endif
+endfunction
+
+augroup goyo_markdown
+  autocmd!
+  autocmd BufNewFile,BufRead * call s:auto_goyo()
+augroup END
+
+let g:goyo_callbacks = [function('Goyo_before'), function('Goyo_after')]

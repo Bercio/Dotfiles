@@ -14,3 +14,13 @@
     Mod2 + XF86AudioPrev
 "mpc stop"
     Mod2 + XF86AudioStop
+"chromium &"
+	Mod1 + w
+"gvim &"
+	Mod1 + e
+"st &"
+	Mod1 + space
+"thunar &"
+	Mod1 + r
+"synapse &"
+	Mod1 + p

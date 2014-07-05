@@ -1,0 +1,31 @@
+#
+# Executes commands at the start of an interactive session.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+if [[ -s "$HOME/.config/colors/default.sh" ]]; then
+  source "$HOME/.config/colors/default.sh"
+fi
+#Customize to your needs...
+alias cp='cp -r'
+alias rm='trash-put'
+alias nic='wicd-curses'
+alias scr='cd ~/Scripts/ && cp template.py $1.py && git add $1.py && vim $1.py'
+alias trs='transmission-remote'
+alias wic='wicd-cli -y'
+setopt nohist_verify
+setopt pushdsilent
+setopt clobber
+setopt hist_reduce_blanks
+bindkey 'jj' vi-cmd-mode
+alias dmpc='mpd_control'
+alias sx='startx'
+alias trl='echo "$(trs -l | head -1)\n$(trs -l | grep -v --color=never "Done")"'
+alias mpd='mpd ~/.config/mpd/mpd.conf'
+alias zat='zathura'
+alias pan='pandoc -V geometry:margin=1in'

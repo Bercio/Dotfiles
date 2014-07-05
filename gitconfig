@@ -1,5 +1,5 @@
 [user]
-	email = lorenzo233@gmail.com
+	email = lo@bercio.com
 	name = bercio
 [alias]
 	tree = log --graph --decorate --pretty=oneline --abbrev-commit
@@ -13,3 +13,5 @@
 	ui = always
 [push]
 	default = simple
+[core]
+	excludesfile = /home/bercio/.gitignore

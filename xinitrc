@@ -10,19 +10,20 @@ fi
 [[ -f ~/.dotfiles/Xresources ]] && xrdb -merge ~/.dotfiles/Xresources
 [[ -r ~/.config/colors/default.xresources ]] && xrdb -merge ~/.config/colors/default.xresources
 xsetroot -cursor_name left_ptr
-exec awesome & wmpid=$!
+exec dwm & wmpid=$!
 if [ -f $HOME/.dotfiles/xbindkeysrc ]; then
     /usr/bin/xbindkeys --file $HOME/.dotfiles/xbindkeysrc &
 fi
-urxvtd -q -f &
-# redshift -l 25.0333:121.5333 &
-unclutter -grab &
-xcape 
-redshift -l 44.5075:11.3514 &
-numlockx &
-synclient TouchpadOff=1 &
 if [ -f $HOME/.dotfiles/xmodmaprc ]; then
     /usr/bin/xmodmap $HOME/.dotfiles/xmodmaprc &
 fi
-wicd-gtk -t &
+feh --bg-fill "Media/Pictures/c&h.jpg"
+unclutter -grab &
+redshift -l 44.5075:11.3514 &
+dropboxd
+numlockx &
+
+eval $(cat ~/.fehbg)
+synapse -s
+xcape
 wait $wmpid
