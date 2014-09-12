@@ -6,7 +6,13 @@
     Mod2 + XF86AudioLowerVolume
 "amixer sset Master playback 5+"
     Mod2 + XF86AudioRaiseVolume
-"mpc toggle"
+"xbacklight -dec 20"
+	Mod2 + XF86HomePage
+"xbacklight -inc 20"
+	Mod2 + XF86Mail
+"xbacklight -set 100"
+	Mod2 + XF86Search
+"~/Scripts/toggle_music"
     Mod2 + XF86AudioPlay
 "mpc next"
     Mod2 + XF86AudioNext
@@ -14,13 +20,21 @@
     Mod2 + XF86AudioPrev
 "mpc stop"
     Mod2 + XF86AudioStop
+"/home/bercio/Scripts/current"
+	Mod1 + q
+"/home/bercio/Scripts/current2"
+	Mod1 + s
+"kupfer &"
+	Mod1 + p
 "chromium &"
 	Mod1 + w
 "gvim &"
 	Mod1 + e
 "st &"
 	Mod1 + space
+"calibre &"
+	Mod1 + c
 "thunar &"
 	Mod1 + r
-"synapse &"
-	Mod1 + p
+"anki &"
+	Mod1 + a

@@ -7,28 +7,46 @@
 	Bundle 'embear/vim-localvimrc'
 	Bundle 'tpope/vim-surround'
 	Bundle 'tpope/vim-repeat'
-	Bundle 'tpope/vim-markdown'
 	Bundle 'chriskempson/base16-vim'
 	Bundle 'dhruvasagar/vim-table-mode'
-	Bundle 'Lokaltog/vim-easymotion'
 	Bundle 'vim-pandoc/vim-pandoc'
 	Bundle 'vim-pandoc/vim-pandoc-syntax'
         Bundle 'junegunn/goyo.vim'
+	Bundle 'davidhalter/jedi-vim'
+	Bundle 'ervandew/supertab'
+	Bundle 'SirVer/ultisnips'
+	Bundle 'honza/vim-snippets'
+	Bundle 'jamessan/vim-gnupg'
+	Bundle 'nvie/vim-flake8'
+	Bundle 'kien/ctrlp.vim'
+	Bundle 'Bercio/vim-inkscape-insert'
+	Bundle 'ap/vim-you-keep-using-that-word'
+	Bundle 'kana/vim-smartword'
+ 
 
-	let g:EasyMotion_leader_key = '<Leader>'
 	syntax on
 	filetype indent plugin on
 	let g:table_mode_corner_corner = '+'
         let g:pandoc#modules#disabled = ["folding"]
+"        let g:ipy_perform_mappings=0
+"        map <Leader><space> <Plug>(IPython-RunFile)
+"        map <Leader>d <Plug>(IPython-OpenPyDoc)
+"        map <Leader>s <Plug>(IPython-UpdateShell)
+"        map <Leader>f <Plug>(IPython-RunLine)
+"        map <Leader>a <Plug>(IPython-RunLineAsTopLevel)
+	map w  <Plug>(smartword-w)
+	map b  <Plug>(smartword-b)
+	map e  <Plug>(smartword-e)
+	map ge  <Plug>(smartword-ge)
+
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 nnoremap Y y$
 set incsearch
 set ignorecase
 set smartcase
-set tabstop=8
-set softtabstop=4
-set shiftwidth=4
-set expandtab
 set autowriteall
 set noswapfile
 set undofile
@@ -37,13 +55,19 @@ set wildmenu
 set path=** 
 set guifont=Inconsolata\ 10
 set guioptions=aegi
+set clipboard=unnamedplus
+set dictionary=/usr/share/dict/cracklib-small
+set cryptmethod=blowfish
+set iskeyword-=_
+set iskeyword-=-
+set autochdir
 
 if has("gui_running")
 	set background=light
 	colorscheme base16-solarized
 else
 	set background=dark
-	colorscheme base16-twilight
+	colorscheme base16-railscasts
 endif
 
 set scrolloff=20
@@ -60,7 +84,13 @@ cnoremap acc set iminsert=1<CR>
 nnoremap gb :ls<CR>:b
 nnoremap <leader>g :Goyo<CR>
 cnoremap w! w !sudo tee > /dev/null %
-autocmd! FileType markdown,pandoc TableModeEnable
+augroup Formatting 
+	au!
+      	autocmd FileType markdown,pandoc TableModeEnable
+	autocmd FileType markdown,pandoc set tw=80
+	autocmd FileType markdown,pandoc set formatoptions+=aln
+augroup END
+autocmd! FileType python set makeprg="python\ %" 
 let g:localvimrc_ask = 0
 let g:localvimrc_sandbox = 0
 
@@ -83,7 +113,7 @@ function! Goyo_after()
 endfunction
 
 function! s:auto_goyo()
-  if &ft == 'markdown'
+  if &ft == 'pandoc'
     Goyo 80
   elseif exists('#goyo')
     let bufnr = bufnr('%')
@@ -98,3 +128,4 @@ augroup goyo_markdown
 augroup END
 
 let g:goyo_callbacks = [function('Goyo_before'), function('Goyo_after')]
+
